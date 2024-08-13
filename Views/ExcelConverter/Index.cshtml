@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Convert Excel to SQL";
+}
+
+<h2>Convert Excel to SQL</h2>
+
+<form asp-action="ConvertToSql" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="excelFile">Upload Excel File:</label>
+        <input type="file" name="excelFile" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="tableName">Table Name:</label>
+        <input type="text" name="tableName" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Convert</button>
+</form>
+
+@if (ViewBag.SqlStatements != null)
+{
+    <h3>SQL Statements</h3>
+    <pre>
+    @foreach (var statement in ViewBag.SqlStatements)
+    {
+        @statement
+    }
+    </pre>
+}
